@@ -32,7 +32,13 @@ export const createAdoptionRequest = async (req, res) => {
 
 export const getAdoptionRequests = async (req, res) => {
 	try {
-		const requests = await AdoptionRequest.find()
+		const filter = {};
+
+		if (req.query.status) {
+			filter.status = req.query.status;
+		}
+
+		const requests = await AdoptionRequest.find(filter)
 			.populate('animal')
 			.sort({ createdAt: -1 });
 
