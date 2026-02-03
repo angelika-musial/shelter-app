@@ -17,7 +17,7 @@ export const createAdoptionRequest = async (req, res) => {
 		const savedRequest = await adoptionRequest.save();
 
 		res.status(201).json({
-			message: 'Adoption request submitted successfully',
+			message: 'Adoption request submitted successfully.',
 			request: savedRequest,
 		});
 	} catch (error) {
@@ -27,5 +27,17 @@ export const createAdoptionRequest = async (req, res) => {
 				.json({ message: 'Validation failed', errors: error.errors });
 		}
 		res.status(500).json({ message: 'Server error' });
+	}
+};
+
+export const getAdoptionRequests = async (req, res) => {
+	try {
+		const requests = await AdoptionRequest.find()
+			.populate('animal')
+			.sort({ createdAt: -1 });
+
+		res.json(requests);
+	} catch (error) {
+		res.status(500).json({ message: 'Failed to fetch adoption requests.' });
 	}
 };
