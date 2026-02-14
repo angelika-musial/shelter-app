@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { adoptionSchema, type AdoptionFormData } from './adoption.schema';
 import { createAdoptionRequest } from '../../api/adoptionRequests.api';
 import toast from 'react-hot-toast';
 
@@ -8,27 +10,17 @@ interface Props {
 }
 
 export const AdoptionModal = ({ animalId, onClose }: Props) => {
-	const [formData, setFormData] = useState({
-		fullName: '',
-		email: '',
-		phone: '',
-		message: '',
+	const {
+		register,
+		handleSubmit,
+		formState: { errors, isSubmitting },
+	} = useForm<AdoptionFormData>({
+		resolver: zodResolver(adoptionSchema),
 	});
 
-	const handleChange = (
-		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-	) => {
-		setFormData({
-			...formData,
-			[e.target.name]: e.target.value,
-		});
-	};
-
-	const handleSubmit = async (e: React.FormEvent) => {
-		e.preventDefault();
-
+	const onSubmit = async (data: AdoptionFormData) => {
 		try {
-			await createAdoptionRequest(animalId, formData);
+			await createAdoptionRequest(animalId, data);
 			toast.success('Adoption request sent!');
 			onClose();
 		} catch (error) {
@@ -44,39 +36,50 @@ export const AdoptionModal = ({ animalId, onClose }: Props) => {
 			<div className='bg-white p-6 rounded-lg w-full max-w-md'>
 				<h2 className='text-xl font-semibold mb-4'>Adoption Form</h2>
 
-				<form onSubmit={handleSubmit} className='space-y-4'>
-					<input
-						name='fullName'
-						placeholder='Full Name'
-						className='w-full border p-2 rounded'
-						onChange={handleChange}
-						required
-					/>
+				<form onSubmit={handleSubmit(onSubmit)} className='space-y-4'>
+					<div>
+						<input
+							{...register('fullName')}
+							placeholder='Full Name'
+							className='w-full border p-2 rounded'
+						/>
+						{errors.fullName && (
+							<p className='text-red-500 text-sm'>{errors.fullName.message}</p>
+						)}
+					</div>
 
-					<input
-						name='email'
-						type='email'
-						placeholder='Email'
-						className='w-full border p-2 rounded'
-						onChange={handleChange}
-						required
-					/>
+					<div>
+						<input
+							{...register('email')}
+							placeholder='Email'
+							className='w-full border p-2 rounded'
+						/>
+						{errors.email && (
+							<p className='text-red-500 text-sm'>{errors.email.message}</p>
+						)}
+					</div>
 
-					<input
-						name='phone'
-						placeholder='Phone'
-						className='w-full border p-2 rounded'
-						onChange={handleChange}
-						required
-					/>
+					<div>
+						<input
+							{...register('phone')}
+							placeholder='Phone'
+							className='w-full border p-2 rounded'
+						/>
+						{errors.phone && (
+							<p className='text-red-500 text-sm'>{errors.phone.message}</p>
+						)}
+					</div>
 
-					<textarea
-						name='message'
-						placeholder='Please tell us why you are interested in adoption and add information about your living conditions.'
-						className='w-full border p-2 rounded'
-						onChange={handleChange}
-						required
-					/>
+					<div>
+						<textarea
+							{...register('message')}
+							placeholder='Please tell us why you are interested in adoption and add information about your living conditions.'
+							className='w-full border p-2 rounded'
+						/>
+						{errors.message && (
+							<p className='text-red-500 text-sm'>{errors.message.message}</p>
+						)}
+					</div>
 
 					<div className='flex justify-end gap-3'>
 						<button
@@ -89,9 +92,10 @@ export const AdoptionModal = ({ animalId, onClose }: Props) => {
 
 						<button
 							type='submit'
-							className='px-4 py-2 bg-blue-600 text-white rounded'
+							disabled={isSubmitting}
+							className='px-4 py-2 bg-blue-600 text-white rounded disabled:opacity-50'
 						>
-							Send
+							{isSubmitting ? 'Sending...' : 'Send'}
 						</button>
 					</div>
 				</form>
