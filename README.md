@@ -1,10 +1,17 @@
-# 🐾 Shelter App
+# 🐾 Home4Paws | Animal Adoption Platform
 
-Shelter App is a fictional animal shelter management application created as a portfolio project.
+Home4Paws is a full-stack animal shelter application built with:
 
-The goal of this project is to build a full-stack application that allows managing animals available for adoption, including adding, viewing, and updating animal data.
+- Node.js + Express + MongoDB (backend)
+- React + TypeScript + Tailwind CSS (frontend)
 
-⚠️ This project is currently under active development.
+The application allows users to:
+
+- browse available animals
+- view animal details
+- submit adoption requests
+
+Admin panel and authentication system are currently in development.
 
 ---
 
@@ -18,10 +25,23 @@ The goal of this project is to build a full-stack application that allows managi
 - dotenv
 - CORS
 
-Frontend will be added later using React.
+### Frontend
+
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- React Router
+- React Hook Form
+- Zod
 
 ---
 
 ## Project Status
 
 Work in progress.
+
+Planned features:
+
+- Admin authentication
+- Adoption request management panel
