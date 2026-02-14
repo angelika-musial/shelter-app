@@ -1,21 +1,42 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
 	return (
 		<nav className='bg-white shadow-md'>
 			<div className='container mx-auto p-4 flex justify-between items-center'>
-				<Link to='/' className='text-2xl font-bold'>
+				<NavLink
+					to='/'
+					className={({ isActive }) =>
+						isActive
+							? 'text-2xl font-semibold text-blue-600'
+							: 'text-2xl font-semibold text-gray-700 hover:text-blue-600'
+					}
+				>
 					Home4Paws
-				</Link>
+				</NavLink>
 
-				<div className='space-x-6 text-xl'>
-					<Link to='/animals' className='hover:text-blue-600'>
+				<div className='space-x-6 text-xl font-semibold'>
+					<NavLink
+						to='/animals'
+						className={({ isActive }) =>
+							isActive
+								? 'text-blue-600 border-b-2 border-blue-600'
+								: 'text-gray-700 hover:text-blue-600'
+						}
+					>
 						Animals
-					</Link>
+					</NavLink>
 
-					<Link to='/contact' className='hover:text-blue-600'>
+					<NavLink
+						to='/contact'
+						className={({ isActive }) =>
+							isActive
+								? 'text-blue-600 border-b-2 border-blue-600'
+								: 'text-gray-700 hover:text-blue-600'
+						}
+					>
 						Contact
-					</Link>
+					</NavLink>
 				</div>
 			</div>
 		</nav>
