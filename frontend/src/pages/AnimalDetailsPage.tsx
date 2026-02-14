@@ -2,10 +2,12 @@ import type { Animal } from '../types/animal.types';
 import { useEffect, useState } from 'react';
 import { getAnimalById } from '../api/animals.api';
 import { useParams } from 'react-router-dom';
+import AdoptionModal from '../components/adoption/AdoptionModal';
 
 const AnimalDetailsPage = () => {
 	const { id } = useParams();
 	const [animal, setAnimal] = useState<Animal | null>(null);
+	const [isOpen, setIsOpen] = useState(false);
 
 	useEffect(() => {
 		const fetchAnimal = async () => {
@@ -34,6 +36,17 @@ const AnimalDetailsPage = () => {
 			</p>
 
 			<p className='mt-4'>{animal.description}</p>
+
+			<button
+				onClick={() => setIsOpen(true)}
+				className='mt-6 p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600'
+			>
+				Adopt this pet
+			</button>
+
+			{isOpen && (
+				<AdoptionModal animalId={animal._id} onClose={() => setIsOpen(false)} />
+			)}
 		</div>
 	);
 };
