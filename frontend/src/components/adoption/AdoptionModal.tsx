@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { adoptionSchema, type AdoptionFormData } from './adoption.schema';
+import { adoptionSchema, type AdoptionFormData } from '../../schemas/adoption.schema';
 import { createAdoptionRequest } from '../../api/adoptionRequests.api';
 import toast from 'react-hot-toast';
 
