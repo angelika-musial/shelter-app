@@ -39,7 +39,7 @@ const AnimalDetailsPage = () => {
 
 			<button
 				onClick={() => setIsOpen(true)}
-				className='mt-6 p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600'
+				className='mt-6 p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 cursor-pointer'
 			>
 				Adopt this pet
 			</button>

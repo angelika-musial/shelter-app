@@ -85,7 +85,7 @@ export const AdoptionModal = ({ animalId, onClose }: Props) => {
 						<button
 							type='button'
 							onClick={onClose}
-							className='px-4 py-2 border rounded'
+							className='px-4 py-2 border rounded cursor-pointer hover:bg-gray-100'
 						>
 							Cancel
 						</button>
@@ -93,7 +93,7 @@ export const AdoptionModal = ({ animalId, onClose }: Props) => {
 						<button
 							type='submit'
 							disabled={isSubmitting}
-							className='px-4 py-2 bg-blue-600 text-white rounded disabled:opacity-50'
+							className='px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded disabled:opacity-50 cursor-pointer'
 						>
 							{isSubmitting ? 'Sending...' : 'Send'}
 						</button>
