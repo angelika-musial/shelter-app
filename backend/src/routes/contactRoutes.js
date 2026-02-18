@@ -1,8 +1,14 @@
 import express from 'express';
-import { createContactMessage } from '../controllers/contactController.js';
+import {
+	createContactMessage,
+	getContactMessages,
+	markContactAsRead,
+} from '../controllers/contactController.js';
 
 const router = express.Router();
 
 router.post('/', createContactMessage);
+router.get('/', getContactMessages);
+router.patch('/:id', markContactAsRead);
 
 export default router;

@@ -20,3 +20,31 @@ export const createContactMessage = async (req, res) => {
 		res.status(500).json({ message: 'Server error' });
 	}
 };
+
+export const getContactMessages = async (req, res) => {
+	try {
+		const messages = await ContactMessage.find().sort({ createdAt: -1 });
+
+		res.json(messages);
+	} catch (error) {
+		res.status(500).json({ message: 'Server error' });
+	}
+};
+
+export const markContactAsRead = async (req, res) => {
+	try {
+		const message = await ContactMessage.findByIdAndUpdate(
+			req.params.id,
+			{ status: 'read' },
+			{ new: true },
+		);
+
+		if (!message) {
+			return res.status(404).json({ message: 'Message not found' });
+		}
+
+		res.json(message);
+	} catch (error) {
+		res.status(400).json({ message: 'Invalid ID' });
+	}
+};
