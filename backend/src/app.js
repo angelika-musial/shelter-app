@@ -3,6 +3,7 @@ import cors from 'cors';
 import animalRoutes from './routes/animalRoutes.js';
 import adoptionRequestRoutes from './routes/adoptionRequestRoutes.js';
 import contactRoutes from './routes/contactRoutes.js';
+import adminRoutes from './routes/adminRoutes.js';
 
 const app = express();
 
@@ -16,5 +17,6 @@ app.get('/', (req, res) => {
 app.use('/api/animals', animalRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api', adoptionRequestRoutes);
+app.use('/api/admin', adminRoutes);
 
 export default app;
