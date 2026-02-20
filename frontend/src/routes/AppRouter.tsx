@@ -5,6 +5,9 @@ import HomePage from '../pages/HomePage';
 import AnimalsPage from '../pages/AnimalsPage';
 import AnimalDetailsPage from '../pages/AnimalDetailsPage';
 import ContactPage from '../pages/ContactPage';
+import AdminLoginPage from '../pages/AdminLoginPage';
+import AdminDashboardPage from '../pages/AdminDashboardPage';
+import { ProtectedRoute } from '../components/admin/ProtectedRoute';
 
 export const router = createBrowserRouter([
 	{
@@ -16,6 +19,15 @@ export const router = createBrowserRouter([
 			{ path: 'animals', element: <AnimalsPage /> },
 			{ path: 'animals/:id', element: <AnimalDetailsPage /> },
 			{ path: 'contact', element: <ContactPage /> },
+			{ path: 'admin/login', element: <AdminLoginPage /> },
+			{
+				path: 'admin',
+				element: (
+					<ProtectedRoute>
+						<AdminDashboardPage />
+					</ProtectedRoute>
+				),
+			},
 		],
 	},
 ]);
