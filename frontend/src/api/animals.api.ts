@@ -1,6 +1,5 @@
-import axios from 'axios';
+import { api } from './api';
 
-const API_URL = 'http://localhost:5000/api/animals';
+export const getAnimals = () => api.get('/animals');
 
-export const getAnimals = () => axios.get(API_URL);
-export const getAnimalById = (id: string) => axios.get(`${API_URL}/${id}`);
+export const getAnimalById = (id: string) => api.get(`/animals/${id}`);
