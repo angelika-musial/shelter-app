@@ -1,7 +1,9 @@
 import { api } from './api';
 
-export const loginAdmin = (email: string, password: string) =>
-	api.post('/admin/login', { email, password });
+export const loginAdmin = async (email: string, password: string) => {
+	const response = await api.post('/admin/login', { email, password });
+	return response.data;
+};
 
 export const getAdoptionRequests = () => api.get('/adoption-requests');
 
