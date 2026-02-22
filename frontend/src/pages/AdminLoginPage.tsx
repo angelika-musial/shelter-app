@@ -8,11 +8,6 @@ import {
 } from '../schemas/adminLogin.schema';
 import { useState } from 'react';
 
-interface Props {
-	email: string;
-	password: string;
-}
-
 const AdminLoginPage = () => {
 	const {
 		register,
@@ -24,7 +19,7 @@ const AdminLoginPage = () => {
 	const navigate = useNavigate();
 	const [serverError, setServerError] = useState<string | null>(null);
 
-	const onSubmit = async (data: Props) => {
+	const onSubmit = async (data: AdminLoginFormData) => {
 		try {
 			setServerError(null);
 			const response = await loginAdmin(data.email, data.password);
