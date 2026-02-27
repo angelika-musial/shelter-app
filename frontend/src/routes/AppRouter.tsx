@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
 import NotFoundPage from '../pages/NotFoundPage';
 import HomePage from '../pages/HomePage';
@@ -6,8 +6,12 @@ import AnimalsPage from '../pages/AnimalsPage';
 import AnimalDetailsPage from '../pages/AnimalDetailsPage';
 import ContactPage from '../pages/ContactPage';
 import AdminLoginPage from '../pages/AdminLoginPage';
-import AdminDashboardPage from '../pages/AdminDashboardPage';
+import AdminDashboardPage from '../pages/admin/AdminDashboardPage';
 import { ProtectedRoute } from '../components/admin/ProtectedRoute';
+import AdminLayout from '../components/admin/AdminLayout';
+import AdminAnimalsPage from '../pages/admin/AdminAnimalsPage';
+import AdminAdoptionRequestsPage from '../pages/admin/AdminAdoptionRequestsPage';
+import AdminContactMessagesPage from '../pages/admin/AdminContactMessagesPage';
 
 export const router = createBrowserRouter([
 	{
@@ -19,15 +23,22 @@ export const router = createBrowserRouter([
 			{ path: 'animals', element: <AnimalsPage /> },
 			{ path: 'animals/:id', element: <AnimalDetailsPage /> },
 			{ path: 'contact', element: <ContactPage /> },
-			{ path: 'admin/login', element: <AdminLoginPage /> },
-			{
-				path: 'admin',
-				element: (
-					<ProtectedRoute>
-						<AdminDashboardPage />
-					</ProtectedRoute>
-				),
-			},
+		],
+	},
+	{ path: 'admin/login', element: <AdminLoginPage /> },
+	{
+		path: 'admin',
+		element: (
+			<ProtectedRoute>
+				<AdminLayout />
+			</ProtectedRoute>
+		),
+		children: [
+			{ index: true, element: <Navigate to='dashboard' replace /> },
+			{ path: 'dashboard', element: <AdminDashboardPage /> },
+			{ path: 'animals', element: <AdminAnimalsPage /> },
+			{ path: 'adoption-requests', element: <AdminAdoptionRequestsPage /> },
+			{ path: 'contact-messages', element: <AdminContactMessagesPage /> },
 		],
 	},
 ]);
