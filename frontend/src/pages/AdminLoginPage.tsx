@@ -26,7 +26,7 @@ const AdminLoginPage = () => {
 
 			localStorage.setItem('adminToken', response.token);
 
-			navigate('/admin');
+			navigate('/admin/dashboard');
 		} catch (error: unknown) {
 			if (error instanceof Error) {
 				setServerError(error.message);
