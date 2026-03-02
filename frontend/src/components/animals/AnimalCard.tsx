@@ -26,14 +26,14 @@ const AnimalCard = ({ animal, isAdmin, onDelete, onEdit }: AnimalProps) => {
 				{isAdmin ? (
 					<div className='flex justify-end gap-2'>
 						<button
-							className='bg-blue-500 text-white px-3 py-1 rounded'
+							className='bg-blue-500 text-white px-3 py-1 rounded cursor-pointer hover:bg-blue-600'
 							onClick={() => onEdit?.(animal._id)}
 						>
 							Edit
 						</button>
 
 						<button
-							className='bg-red-500 text-white px-3 py-1 rounded'
+							className='bg-red-500 text-white px-3 py-1 rounded cursor-pointer hover:bg-red-600'
 							onClick={() => onDelete?.(animal._id)}
 						>
 							Delete
