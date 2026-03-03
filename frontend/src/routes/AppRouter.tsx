@@ -12,6 +12,7 @@ import AdminLayout from '../components/admin/AdminLayout';
 import AdminAnimalsPage from '../pages/admin/AdminAnimalsPage';
 import AdminAdoptionRequestsPage from '../pages/admin/AdminAdoptionRequestsPage';
 import AdminContactMessagesPage from '../pages/admin/AdminContactMessagesPage';
+import CreateAnimalPage from '../pages/admin/CreateAnimalPage';
 
 export const router = createBrowserRouter([
 	{
@@ -37,6 +38,7 @@ export const router = createBrowserRouter([
 			{ index: true, element: <Navigate to='dashboard' replace /> },
 			{ path: 'dashboard', element: <AdminDashboardPage /> },
 			{ path: 'animals', element: <AdminAnimalsPage /> },
+			{ path: 'animals/new', element: <CreateAnimalPage /> },
 			{ path: 'adoption-requests', element: <AdminAdoptionRequestsPage /> },
 			{ path: 'contact-messages', element: <AdminContactMessagesPage /> },
 		],

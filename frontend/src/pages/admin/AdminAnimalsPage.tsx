@@ -37,9 +37,22 @@ const AdminAnimalsPage = () => {
 		navigate(`/admin/animals/edit/${id}`);
 	};
 
+	const handleCreate = () => {
+		navigate('/admin/animals/new');
+	};
+
 	return (
 		<>
-			<h2 className='text-2xl text-center font-bold mb-6'>Animals</h2>
+			<div className='flex items-center justify-between mb-6'>
+				<h2 className='text-2xl font-bold'>Animals</h2>
+
+				<button
+					onClick={handleCreate}
+					className='px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 cursor-pointer'
+				>
+					Create New Animal
+				</button>
+			</div>
 			<AnimalList
 				animals={animals}
 				isAdmin
