@@ -13,6 +13,7 @@ import AdminAnimalsPage from '../pages/admin/AdminAnimalsPage';
 import AdminAdoptionRequestsPage from '../pages/admin/AdminAdoptionRequestsPage';
 import AdminContactMessagesPage from '../pages/admin/AdminContactMessagesPage';
 import CreateAnimalPage from '../pages/admin/CreateAnimalPage';
+import EditAnimalPage from '../pages/admin/EditAnimalPage';
 
 export const router = createBrowserRouter([
 	{
@@ -39,6 +40,7 @@ export const router = createBrowserRouter([
 			{ path: 'dashboard', element: <AdminDashboardPage /> },
 			{ path: 'animals', element: <AdminAnimalsPage /> },
 			{ path: 'animals/new', element: <CreateAnimalPage /> },
+			{ path: 'animals/:id/edit', element: <EditAnimalPage /> },
 			{ path: 'adoption-requests', element: <AdminAdoptionRequestsPage /> },
 			{ path: 'contact-messages', element: <AdminContactMessagesPage /> },
 		],

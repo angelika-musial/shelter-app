@@ -34,7 +34,7 @@ const AdminAnimalsPage = () => {
 	};
 
 	const handleEdit = (id: string) => {
-		navigate(`/admin/animals/edit/${id}`);
+		navigate(`/admin/animals/${id}/edit`);
 	};
 
 	const handleCreate = () => {

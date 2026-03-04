@@ -19,7 +19,7 @@ export const animalSchema = z.object({
 			message: 'Invalid species',
 		}) as z.ZodType<'dog' | 'cat' | 'other'>,
 	breed: z.string().optional(),
-	description: z.string().min(10, 'Description must be at least 10 characters'),
+	description: z.string().trim().min(10, 'Description must be at least 10 characters'),
 	imageUrl: z.url('Must be a valid URL'),
 });
 
