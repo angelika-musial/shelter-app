@@ -8,5 +8,7 @@ export const createAdoptionRequest = (
 
 export const getAdoptionRequests = () => api.get('/adoption-requests');
 
-export const updateAdoptionStatus = (id: string, status: string) =>
-	api.patch(`/adoption-requests/${id}`, { status });
+export const updateAdoptionStatus = (
+	id: string,
+	status: 'approved' | 'rejected',
+) => api.patch(`/adoption-requests/${id}`, { status });
